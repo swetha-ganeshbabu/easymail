@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Emails</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .header {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .email-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .email-card {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+        .email-card:hover {
+            transform: translateY(-2px);
+        }
+        .email-subject {
+            color: #1a73e8;
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+        .email-from {
+            color: #5f6368;
+            margin: 0 0 0.3rem 0;
+            font-size: 0.9rem;
+        }
+        .email-date {
+            color: #70757a;
+            font-size: 0.8rem;
+        }
+        .logout-btn {
+            background: #dc3545;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .logout-btn:hover {
+            background: #bb2d3b;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Your Recent Emails</h1>
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+
+    <div class="email-list">
+        {% if emails %}
+            {% for email in emails %}
+                <div class="email-card">
+                    <h3 class="email-subject">{{ email.subject }}</h3>
+                    <p class="email-from">{{ email.from }}</p>
+                    <p class="email-date">{{ email.date }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="email-card">
+                <p>No emails found in your inbox.</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
